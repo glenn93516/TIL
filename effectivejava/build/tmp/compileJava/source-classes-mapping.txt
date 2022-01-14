@@ -1,0 +1,8 @@
+staticmethod/WritingTool.java
+ staticmethod.WritingTool
+staticmethod/Pencil.java
+ staticmethod.Pencil
+staticmethod/ColorPen.java
+ staticmethod.ColorPen
+staticmethod/Main.java
+ staticmethod.Main
