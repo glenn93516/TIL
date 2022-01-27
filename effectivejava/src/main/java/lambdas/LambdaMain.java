@@ -53,4 +53,16 @@ public class LambdaMain {
 
         return copiedWords;
     }
+
+    /*
+        이렇게 서로 다른 함수형 인터페이스를 같은 위치의 매개변수로 받으면
+        클라이언트 입장에서 구분이 매우 어려워 지니 피하자
+    */
+    private static void badLambdaOverloading(ExampleLambdaOne lambda) {
+        lambda.accept(1);
+    }
+
+    private static void badLambdaOverloading(ExampleLambdaTwo lambda) {
+        lambda.accept("abc");
+    }
 }
