@@ -1,7 +1,12 @@
 package streams;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 public class StreamMain {
@@ -17,6 +22,11 @@ public class StreamMain {
             물론 여기에 람다의 매개변수 명을 보다 정확히 명시해 더 나아졌다
          */
         betterCaseStream(words);
+
+        // 스트림 패러다임에 맞게 잘 사용하자
+        // 단순히 스트림으로 바꾸기만 하면 스트림의 기능을 잘 활용하기 어려움
+        notStreamParadigmCase();
+        streamParadigm();
     }
 
     private static void betterCaseStream(final List<String> words) {
@@ -43,5 +53,20 @@ public class StreamMain {
                 .filter(g -> g.size() >= 1)
                 .map(g -> g.size() + ": " + g)
                 .forEach(System.out::println);
+    }
+
+    private static void notStreamParadigmCase() {
+        Map<String, Long> freq = new HashMap<>();
+        // stream 은 사용했으나, 스트림처럼 보이는 반복문에 불과하다
+        // stream에게 전달되는 freq의 상태가 변하는 side effect가 있기 때문
+        List.of("a", "abc", "cdef", "z").forEach(word ->
+                freq.merge(word.toLowerCase(), 1L, Long::sum));
+        System.out.println(freq);
+    }
+
+    private static void streamParadigm() {
+        Map<String, Long> freq = Stream.of("a", "abc", "cdef", "z")
+                .collect(groupingBy(String::toLowerCase, counting()));
+        System.out.println(freq);
     }
 }
