@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+spec:
+  template:
+    # template에는 Pod의 정보를 입력하면 됨
+    # 만약 팟이 죽거나 문제가 생겨 새로 띄워야할 때 이 정보를 이용해 띄움
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        location: KR
+        type: back-end
+        anythingyouwant: ok
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3
+  # selector는 필수
+  # replicaset 생성 전에 만들어진 pod도 관리 가능해짐
+  # Replication controller와 가장 큰 차이점
+  selector:
+    matchLabels:
+      type: back-end

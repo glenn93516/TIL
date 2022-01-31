@@ -7,6 +7,7 @@ metadata:
   labels:
     app: myapp
     location: KR
+    type: back-end
     anythingyouwant: ok
 
 spec:
