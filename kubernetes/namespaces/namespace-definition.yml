@@ -1,0 +1,5 @@
+# kubectl create namespace dev 로 생성도 가능은 함
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
