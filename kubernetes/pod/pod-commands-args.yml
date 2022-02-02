@@ -1,0 +1,20 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+    location: KR
+    type: back-end
+    anythingyouwant: ok
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      # Dockerfile의 ENTRYPOINT 와 같다
+      command: ["sleep"]
+      # Dockerfile의 command와 같다 혼동하지 말 것
+      args: ["10"]
