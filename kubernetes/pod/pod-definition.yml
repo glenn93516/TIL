@@ -14,3 +14,19 @@ spec:
   containers:
     - name: nginx-container
       image: nginx
+      # configMap 전체 다 가져오기
+      envFrom:
+        - configMapRef:
+            name: app-configmap
+      # 환경변수 한 개만 가져오기
+      env:
+        - name: APP_ANY_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: app-configmap
+              key: APP_ANY_ENV
+  # volume 사용
+  volumes:
+    - name: app-config-volume
+      configMap:
+        name: app-configmap
