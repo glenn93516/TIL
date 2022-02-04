@@ -34,6 +34,16 @@ spec:
             secretKeyRef:
               key: DB_PASSWORD
               name: app-secret
+      # Resource 할당
+      resources:
+        # 최대치. memory는 넘긴다고 바로 터지진 않고 넘긴 상태가 지속되면 terminated
+        limits:
+          cpu: "2" # cpu는 vCPU, Core 를 의미함
+          memory: "500Mi"
+        # 초기 요청량
+        requests:
+          cpu: "100m" # 0.1 CPU와 동일
+          memory: "200Mi"
   # volume 사용
   volumes:
     - name: app-config-volume
