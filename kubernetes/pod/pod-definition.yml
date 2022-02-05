@@ -44,6 +44,12 @@ spec:
         requests:
           cpu: "100m" # 0.1 CPU와 동일
           memory: "200Mi"
+  # Taint & Toleration
+  tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "SomeValue"
+      effect: "NoSchedule"
   # volume 사용
   volumes:
     - name: app-config-volume
