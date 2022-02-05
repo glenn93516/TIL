@@ -53,6 +53,19 @@ spec:
   # Node selector -> 복잡한 조건을 걸기 어렵다는 단점 존재
   nodeSelector:
     size: Large # example. key-value
+  # affinity를 통해 복잡한 조건 가능
+  affinity:
+    nodeAffinity:
+      # {required | preffered | ignored} + During{Scheduling | Execution} 으로 구분해서 보면 이해 쉽다
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          # 조건 작성하면 됨
+          - matchExpressions:
+              - key: size
+                operator: In # 다양한 operator 조건 지정 가능
+                values:
+                  - Large
+                  - Medium
   # volume 사용
   volumes:
     - name: app-config-volume
