@@ -50,6 +50,9 @@ spec:
       operator: "Equal"
       value: "SomeValue"
       effect: "NoSchedule"
+  # Node selector -> 복잡한 조건을 걸기 어렵다는 단점 존재
+  nodeSelector:
+    size: Large # example. key-value
   # volume 사용
   volumes:
     - name: app-config-volume
