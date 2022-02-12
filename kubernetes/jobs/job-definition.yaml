@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      # Never 또는 OnFailure만 가능하다. (default은 Always는 불가능 -> Job의 개념을 생각해보면 당연함)
+      restartPolicy: Never
+  # backOffLimit 만큼 Job이 실패하면, fail로 간주. 즉, backOffLimit 만큼 retry함. default 6
+  backoffLimit: 4
