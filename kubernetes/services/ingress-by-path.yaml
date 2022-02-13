@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-by-path
+spec:
+  rules:
+    - http:
+        paths:
+          # URL 경로로 서비스 라우팅
+          - path: /stores
+            backend:
+              service:
+                name: store-service
+                port:
+                  number: 80
+          - path: /orders
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 80
