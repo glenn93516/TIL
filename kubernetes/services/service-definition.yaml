@@ -6,9 +6,11 @@ spec:
   selector:
     # app이라는 label이 myapp인 pod을 expose함
     app: myapp
+  type: NodePort # ClusterIP, LoadBalancer 등 가능. ClusterIP가 default
   ports:
     - protocol: TCP # Service가 제공하는 default protocol
       # 80번 port로 들어오는 요청을
       port: 80
       # pod의 8080 포트로 넘김
       targetPort: 8080
+      nodePort: 30008 # 따로 지정하지 않는 경우 30000 ~ 32767 사이의 값 자동으로 핟랑
